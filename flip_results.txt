@@ -1,0 +1,72 @@
+877: /* ¢...â‚¬¢...â‚¬¢...â‚¬ UPCOMING EVENTS: SPEAKER FLIP CARD ¢...â‚¬¢...â‚¬¢...â‚¬ */
+944: .ue-flip {
+951: .ue-flip.is-flipped {
+1027: .ue-flip { transition: none; }
+1092: .spk-section-inner {
+1100: .spk-header {
+1105: .spk-label {
+1121: .spk-label::before {
+1126: animation: spk-pulse 1.5s ease-in-out infinite;
+1129: @keyframes spk-pulse {
+1134: .spk-title {
+1142: .spk-title em {
+1149: animation: spk-shimmer 3s linear infinite;
+1152: @keyframes spk-shimmer {
+1158: .spk-orb {
+1164: animation: spk-drift linear infinite;
+1167: .spk-orb-1 { width: 400px; height: 400px; background: rgba(26,58,140,0.5); top: -100px; left: -100px; animation-duration: 18s; }
+1168: .spk-orb-2 { width: 300px; height: 300px; background: rgba(184,146,42,0.2); bottom: -80px; right: 10%; animation-duration: 22s; animation-direction: reverse; }
+1169: .spk-orb-3 { width: 250px; height: 250px; background: rgba(41,82,179,0.35); top: 40%; left: 50%; animation-duration: 15s; }
+1171: @keyframes spk-drift {
+1180: .spk-stage {
+1188: /* Flip card */
+1189: .spk-flip-wrap {
+1195: .spk-flip-card {
+1203: .spk-flip-card.flipped {
+1207: .spk-face {
+1217: .spk-face-front {
+1221: .spk-face-front img {
+1229: .spk-flip-card:not(.flipped) .spk-face-front img {
+1233: .spk-photo-overlay {
+1239: .spk-photo-name {
+1246: .spk-photo-name-text {
+1255: .spk-photo-role-text {
+1261: .spk-flip-hint {
+1278: animation: spk-bounce 2s ease-in-out infinite;
+1281: @keyframes spk-bounce {
+1287: .spk-face-back {
+1298: .spk-back-module {
+1315: .spk-back-name {
+1324: .spk-back-role {
+1332: .spk-back-divider {
+1339: .spk-back-bio {
+1346: .spk-back-date {
+1356: .spk-back-date svg {
+1367: .spk-info-panel {
+1373: .spk-count {
+1382: .spk-name-big {
+1392: .spk-role-big {
+1401: .spk-bio-big {
+1409: .spk-module-badge {
+1424: .spk-module-badge span {
+1430: .spk-nav {
+1436: .spk-arrow {
+1447: .spk-arrow:hover {
+1452: .spk-arrow svg {
+1461: .spk-arrow:hover svg { stroke: var(--gold); }
+1463: .spk-dots {
+1469: .spk-dot {
+1479: .spk-dot.active {
+1485: .spk-progress-bar {
+1495: .spk-flip-toggle {
+1513: .spk-flip-toggle:hover {
+1518: .spk-flip-toggle svg {
+1528: .spk-scanline {
+1534: animation: spk-scan 4s ease-in-out infinite;
+1538: @keyframes spk-scan {
+1546: .spk-info-panel.transitioning .spk-name-big,
+1547: .spk-info-panel.transitioning .spk-role-big,
+1548: .spk-info-panel.transitioning .spk-bio-big,
+1549: .spk-info-panel.transitioning .spk-module-badge {
+1555: .spk-stage { grid-template-columns: 1fr; gap: 40px; }
+1556: .spk-flip-wrap { height: 380px; }

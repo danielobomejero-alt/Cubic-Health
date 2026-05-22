@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "Enquiry": {
+      "title": "Enquiry",
+      "description": "User enquiries and consultation requests.",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "description": "User's full name" },
+        "email": { "type": "string", "format": "email", "description": "User's email address" },
+        "phone": { "type": "string", "description": "User's phone number" },
+        "message": { "type": "string", "description": "Health concern or message" },
+        "interestedInConsultation": { "type": "boolean", "description": "Whether the user is interested in a consultation" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the enquiry was submitted" }
+      },
+      "required": ["fullName", "email", "message"]
+    },
+    "RiskAssessment": {
+      "title": "Risk Assessment",
+      "description": "Cardiovascular risk assessment results.",
+      "type": "object",
+      "properties": {
+        "age": { "type": "number", "description": "User's age" },
+        "sex": { "type": "string", "enum": ["male", "female"], "description": "User's sex" },
+        "bpSystolic": { "type": "number", "description": "Systolic blood pressure" },
+        "bpDiastolic": { "type": "number", "description": "Diastolic blood pressure" },
+        "cholesterol": { "type": "number", "description": "Total cholesterol value" },
+        "smoking": { "type": "boolean", "description": "Smoking status" },
+        "diabetes": { "type": "boolean", "description": "Diabetes status" },
+        "physicalActivity": { "type": "string", "description": "Physical activity level" },
+        "riskScore": { "type": "number", "description": "Calculated risk score percentage" },
+        "riskCategory": { "type": "string", "enum": ["Low", "Moderate", "High"], "description": "Risk category" },
+        "timestamp": { "type": "string", "format": "date-time", "description": "When the assessment was completed" },
+        "userId": { "type": "string", "description": "UID of the user if authenticated" }
+      },
+      "required": ["age", "sex", "riskScore", "riskCategory"]
+    }
+  },
+  "firestore": {
+    "/enquiries/{enquiryId}": {
+      "schema": "Enquiry",
+      "description": "Collection of user enquiries."
+    },
+    "/riskAssessments/{assessmentId}": {
+      "schema": "RiskAssessment",
+      "description": "Collection of risk assessments."
+    }
+  }
+}

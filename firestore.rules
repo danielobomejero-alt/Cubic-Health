@@ -1,0 +1,87 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: enquiries
+// Fields:
+//   - fullName: string (required)
+//   - email: string (required, email format)
+//   - phone: string (optional)
+//   - message: string (required)
+//   - interestedInConsultation: bool (optional)
+//   - createdAt: timestamp (required)
+//
+// Collection: riskAssessments
+// Fields:
+//   - age: number (required)
+//   - sex: string (required, enum: male, female)
+//   - bpSystolic: number (optional)
+//   - bpDiastolic: number (optional)
+//   - cholesterol: number (optional)
+//   - smoking: bool (optional)
+//   - diabetes: bool (optional)
+//   - physicalActivity: string (optional)
+//   - riskScore: number (required)
+//   - riskCategory: string (required, enum: Low, Moderate, High)
+//   - timestamp: timestamp (required)
+//   - userId: string (optional)
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "uzomabak@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // Enquiry Validation
+    function isValidEnquiry(data) {
+      return data.keys().hasAll(['fullName', 'email', 'message', 'createdAt']) &&
+             data.fullName is string && data.fullName.size() > 0 && data.fullName.size() < 100 &&
+             isValidEmail(data.email) &&
+             data.message is string && data.message.size() > 0 && data.message.size() < 2000 &&
+             data.createdAt is timestamp;
+    }
+
+    // Risk Assessment Validation
+    function isValidRiskAssessment(data) {
+      return data.keys().hasAll(['age', 'sex', 'riskScore', 'riskCategory', 'timestamp']) &&
+             data.age is number && data.age >= 0 && data.age < 150 &&
+             data.sex in ['male', 'female'] &&
+             data.riskScore is number &&
+             data.riskCategory in ['Low', 'Moderate', 'High'] &&
+             data.timestamp is timestamp;
+    }
+
+    match /enquiries/{enquiryId} {
+      allow create: if isValidEnquiry(request.resource.data);
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    match /riskAssessments/{assessmentId} {
+      allow create: if isValidRiskAssessment(request.resource.data);
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow create: if isAuthenticated() && request.auth.uid == userId && request.resource.data.role == 'user';
+      allow update: if isAdmin();
+    }
+  }
+}
