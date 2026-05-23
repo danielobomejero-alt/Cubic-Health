@@ -103,7 +103,7 @@ export default function EnquiryForm() {
       });
 
       // Sync to Google Sheets via backend
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwhM1Gcc7b2m0YfV_Tq_F4RHd6omsPJJEk7wfVUmjMT-8RU6e5z4x_xXphFqCk6nAIo/exec";
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyjMbXuJuTa_fGwNSlu4tw1xOXFyy0Goka23FutcCiO1jwBpB12yzf2PZlRQ0tn-m1e/exec";
       
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
