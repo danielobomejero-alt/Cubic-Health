@@ -145,15 +145,7 @@ export default function RiskScreening() {
               ))}
             </div>
 
-            <div className="pt-8">
-              <a
-                href="#contact"
-                className="inline-flex items-center space-x-2 px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-emerald-900/20"
-              >
-                <span>Book a Screening</span>
-                <ArrowRight size={20} />
-              </a>
-            </div>
+
           </div>
 
           {/* Right Column: Form Container */}
@@ -272,7 +264,7 @@ export default function RiskScreening() {
                     </div>
                   </div>
 
-                  <div className="pt-4">
+                  <div className="pt-4 space-y-3">
                     <button
                       type="submit"
                       disabled={loading}
@@ -287,6 +279,12 @@ export default function RiskScreening() {
                         </>
                       )}
                     </button>
+                    <a
+                      href="#contact"
+                      className="block text-center text-sm text-emerald-700 hover:text-emerald-900 font-semibold underline underline-offset-2 transition-colors"
+                    >
+                      Book a Screening instead
+                    </a>
                   </div>
                 </motion.form>
               ) : (

@@ -103,15 +103,19 @@ export default function EnquiryForm() {
       });
 
       // Sync to Google Sheets via backend
-      const response = await fetch('/api/sync/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: payload }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Google Sheets Sync Failed (Enquiry):', errorData.error);
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyjMbXuJuTa_fGwNSlu4tw1xOXFyy0Goka23FutcCiO1jwBpB12yzf2PZlRQ0tn-m1e/exec";
+      
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain',
+          },
+          body: JSON.stringify(payload),
+        });
+      } catch (err) {
+        console.error('Google Sheets Sync Error:', err);
       }
 
       setSubmitted(true);

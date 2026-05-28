@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Puzzle, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,9 +27,12 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="#" className="flex items-center space-x-2 text-neutral-900 font-display font-bold text-2xl group">
           <div className="relative">
-            <Puzzle className="text-emerald-600 transition-transform group-hover:rotate-12" size={32} fill="currentColor" fillOpacity={0.1} />
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white" />
-          </div>
+              <img
+                src="/logo.png"
+                alt="Cubik Health Logo"
+                className="w-8 h-8 transition-transform group-hover:rotate-12"
+              />
+            </div>
           <span className="tracking-tight">Cubik<span className="text-emerald-600">Health</span></span>
         </a>
 

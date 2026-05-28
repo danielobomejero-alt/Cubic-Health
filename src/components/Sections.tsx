@@ -589,7 +589,7 @@ export const Footer = () => (
         <div>
           <h4 className="text-white font-bold mb-6">Contact</h4>
           <ul className="space-y-4">
-            <li>hello@cubikhealth.com</li>
+            <li>support@cubikhealth.com</li>
             <li>+1 (555) 123-4567</li>
             <li className="flex space-x-4 pt-2">
               <a href="#" className="hover:text-white transition-colors">Twitter</a>
